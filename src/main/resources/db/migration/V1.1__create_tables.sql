@@ -17,7 +17,7 @@ image varchar
 
 create table users(
 id uuid primary key,
-username varchar,
+username varchar unique,
 email varchar unique not null,
 password varchar,
 first_name varchar,
