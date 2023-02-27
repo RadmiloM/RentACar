@@ -6,6 +6,9 @@ import com.rentacar.RentACar.dto.UserUpdateResponse;
 import com.rentacar.RentACar.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class UserMapper {
 
@@ -42,6 +45,10 @@ public class UserMapper {
         userUpdateResponse.setPersonalNumber(user.getPersonalNumber());
         userUpdateResponse.setImage(user.getImage());
         return userUpdateResponse;
+    }
+
+    public List<UserUpdateResponse> mapToDTO(List<User> users){
+        return users.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
 }
