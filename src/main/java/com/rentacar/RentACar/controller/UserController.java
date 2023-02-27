@@ -2,14 +2,12 @@ package com.rentacar.RentACar.controller;
 
 import com.rentacar.RentACar.dto.UserRequest;
 import com.rentacar.RentACar.dto.UserResponse;
+import com.rentacar.RentACar.dto.UserUpdateRequest;
 import com.rentacar.RentACar.mapper.UserMapper;
 import com.rentacar.RentACar.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -47,6 +45,13 @@ public class UserController {
             userResponse.setMessage("Pogresan username/email ili password");
         }
         return ResponseEntity.ok(userResponse);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<Void> updateUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest, @PathVariable("id") UUID uuid){
+        var user = userMapper.mapToEntity(userUpdateRequest);
+         userService.updateUser(user,uuid);
+         return ResponseEntity.ok().build();
     }
 
 
