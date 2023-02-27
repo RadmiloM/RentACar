@@ -5,10 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,4 +29,6 @@ public class User {
     private String personalNumber;
     private String image;
     private boolean admin;
+    @OneToMany
+    private List<Contract> contracts;
 }

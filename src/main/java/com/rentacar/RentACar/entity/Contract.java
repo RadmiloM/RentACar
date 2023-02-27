@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -26,4 +23,8 @@ public class Contract {
     private double totalPrice;
     private boolean signed;
     private boolean approved;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Car car;
 }
