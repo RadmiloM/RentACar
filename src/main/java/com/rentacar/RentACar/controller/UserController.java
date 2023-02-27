@@ -3,6 +3,7 @@ package com.rentacar.RentACar.controller;
 import com.rentacar.RentACar.dto.UserRequest;
 import com.rentacar.RentACar.dto.UserResponse;
 import com.rentacar.RentACar.dto.UserUpdateRequest;
+import com.rentacar.RentACar.dto.UserUpdateResponse;
 import com.rentacar.RentACar.mapper.UserMapper;
 import com.rentacar.RentACar.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,13 @@ public class UserController {
         var user = userMapper.mapToEntity(userUpdateRequest);
          userService.updateUser(user,uuid);
          return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserUpdateResponse> getUserById(@PathVariable("id") UUID uuid){
+        var user = userService.getUserById(uuid);
+        var userUpdate = userMapper.mapToDTO(user);
+        return ResponseEntity.ok(userUpdate);
     }
 
 
