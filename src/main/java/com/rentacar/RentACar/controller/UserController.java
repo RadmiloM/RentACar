@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -60,6 +61,13 @@ public class UserController {
         var user = userService.getUserById(uuid);
         var userUpdate = userMapper.mapToDTO(user);
         return ResponseEntity.ok(userUpdate);
+    }
+    @GetMapping("/users")
+    public ResponseEntity<List<UserUpdateResponse>> findAllUsers(){
+        var users = userService.findAllUsers();
+        var updatedUsers = userMapper.mapToDTO(users);
+        return ResponseEntity.ok(updatedUsers);
+
     }
 
 

@@ -7,6 +7,7 @@ import com.rentacar.RentACar.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -53,5 +54,9 @@ public class UserService {
             userDB.setUsername(user.getImage());
         }
         userRepository.save(userDB);
+    }
+
+    public List<User> findAllUsers(){
+        return userRepository.findAll();
     }
 }
