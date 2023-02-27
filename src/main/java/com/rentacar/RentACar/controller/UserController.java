@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -18,7 +20,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping("/users/register")
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest){
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest){
         var user = userMapper.mapToEntity(userRequest);
         userService.createUser(user);
         var message = userRequest.getUsername() + " - " + userRequest.getEmail() + " je uspesno registrovan";
