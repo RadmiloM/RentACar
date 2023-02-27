@@ -2,6 +2,7 @@ package com.rentacar.RentACar.mapper;
 
 import com.rentacar.RentACar.dto.UserRequest;
 import com.rentacar.RentACar.dto.UserUpdateRequest;
+import com.rentacar.RentACar.dto.UserUpdateResponse;
 import com.rentacar.RentACar.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,19 @@ public class UserMapper {
         user.setImage(userUpdateRequest.getImage());
         return user;
 
+    }
+
+    public UserUpdateResponse mapToDTO(User user){
+        UserUpdateResponse userUpdateResponse = new UserUpdateResponse();
+        userUpdateResponse.setUsername(user.getUsername());
+        userUpdateResponse.setFirstName(user.getFirstName());
+        userUpdateResponse.setEmail(user.getEmail());
+        userUpdateResponse.setFirstName(user.getFirstName());
+        userUpdateResponse.setLastName(user.getLastName());
+        userUpdateResponse.setPhoneNumber(user.getPhoneNumber());
+        userUpdateResponse.setPersonalNumber(user.getPersonalNumber());
+        userUpdateResponse.setImage(user.getImage());
+        return userUpdateResponse;
     }
 
 }
