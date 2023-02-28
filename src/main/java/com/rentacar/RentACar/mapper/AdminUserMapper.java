@@ -1,13 +1,13 @@
 package com.rentacar.RentACar.mapper;
 
-import com.rentacar.RentACar.dto.UserAdminRequest;
+import com.rentacar.RentACar.dto.AdminUpdateUserRequest;
 import com.rentacar.RentACar.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserAdminMapper {
+public class AdminUserMapper {
 
-    public User mapToEntity(UserAdminRequest userAdminRequest){
+    public User mapToEntity(AdminUpdateUserRequest userAdminRequest){
         User user = new User();
         user.setUsername(userAdminRequest.getUsername());
         user.setEmail(userAdminRequest.getEmail());

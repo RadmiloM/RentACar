@@ -1,6 +1,5 @@
 package com.rentacar.RentACar.dto;
 
-import com.rentacar.RentACar.validation.ValidPassword;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -8,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
-public class UserAdminRequest {
+public class AdminUpdateUserRequest {
 
     @NotEmpty(message = "username may not be empty or null")
     @Size(min = 3, message = "username must be at least 3 characters long")
