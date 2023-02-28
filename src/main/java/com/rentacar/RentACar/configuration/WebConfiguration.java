@@ -1,6 +1,5 @@
 package com.rentacar.RentACar.configuration;
 
-import com.rentacar.RentACar.entity.User;
 import com.rentacar.RentACar.user.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -49,10 +48,12 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/users/register").permitAll()
+                .antMatchers("/users/login").permitAll()
                 .antMatchers("/*").permitAll()
                 .antMatchers("/users/{id}").hasAuthority("USER")
                 .antMatchers("/cars").hasAuthority("ADMIN")
-                //.antMatchers("/common/**").hasAnyAuthority(USER.name(), ADMIN.name())
+                .antMatchers("/cars/{carId}").hasAuthority("ADMIN")
+                .antMatchers("/cars/{carId}").hasAnyAuthority("USER", "ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
