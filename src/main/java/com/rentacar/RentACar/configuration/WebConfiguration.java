@@ -51,7 +51,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/*").permitAll()
                 .antMatchers("/users/{id}").hasAuthority("USER")
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/cars").hasAuthority("ADMIN")
                 //.antMatchers("/common/**").hasAnyAuthority(USER.name(), ADMIN.name())
                 .anyRequest()
                 .authenticated()
