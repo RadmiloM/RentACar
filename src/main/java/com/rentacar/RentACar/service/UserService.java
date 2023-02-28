@@ -34,29 +34,33 @@ public class UserService {
     }
 
     public void updateUser(User user, UUID uuid) {
-        var userDB = userRepository.findById(uuid).get();
+        var userDB = userRepository.findById(uuid);
+        if(userDB.isEmpty()){
+            throw new UsernameNotFoundException("user with id " + uuid + " does not exists in database");
+        }
+        var optionalUser = userDB.get();
         if (Objects.nonNull(user.getUsername()) && !"".equals(user.getUsername())) {
-            userDB.setUsername(user.getUsername());
+            optionalUser.setUsername(user.getUsername());
         }
         if (Objects.nonNull(user.getPassword()) && !"".equals(user.getPassword())) {
-            userDB.setPassword(user.getPassword());
+            optionalUser.setPassword(user.getPassword());
         }
         if (Objects.nonNull(user.getFirstName()) && !"".equals(user.getFirstName())) {
-            userDB.setUsername(user.getFirstName());
+            optionalUser.setUsername(user.getFirstName());
         }
         if (Objects.nonNull(user.getLastName()) && !"".equals(user.getLastName())) {
-            userDB.setUsername(user.getLastName());
+            optionalUser.setUsername(user.getLastName());
         }
         if (Objects.nonNull(user.getPhoneNumber()) && !"".equals(user.getPhoneNumber())) {
-            userDB.setUsername(user.getPhoneNumber());
+            optionalUser.setUsername(user.getPhoneNumber());
         }
         if (Objects.nonNull(user.getImage()) && !"".equals(user.getImage())) {
-            userDB.setUsername(user.getImage());
+            optionalUser.setUsername(user.getImage());
         }
-        userRepository.save(userDB);
+        userRepository.save(optionalUser);
     }
 
-    public List<User> findAllUsers(){
+    public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 }
