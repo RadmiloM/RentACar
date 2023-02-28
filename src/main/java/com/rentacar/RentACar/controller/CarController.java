@@ -1,12 +1,14 @@
 package com.rentacar.RentACar.controller;
 
 import com.rentacar.RentACar.dto.CarRequest;
+import com.rentacar.RentACar.dto.CarResponse;
 import com.rentacar.RentACar.mapper.CarMapper;
 import com.rentacar.RentACar.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,5 +24,12 @@ public class CarController {
             var car = carMapper.mapToEntity(carRequest);
             carService.addCar(car);
             return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/cars")
+    public ResponseEntity<List<CarResponse>> fetchAllCars(){
+        var cars = carService.fetchAllCars();
+        var carsResponse = carMapper.mapToDTO(cars);
+        return ResponseEntity.ok(carsResponse);
     }
 }
