@@ -19,7 +19,7 @@ public class CarController {
     private final CarMapper carMapper;
 
 
-    @PostMapping("/cars/{id}")
+    @PostMapping("/cars")
     public ResponseEntity<Void> addCar(@RequestBody CarRequest carRequest, @RequestHeader("id") UUID uuid){
             var car = carMapper.mapToEntity(carRequest);
             carService.addCar(car);
