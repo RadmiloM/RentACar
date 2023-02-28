@@ -25,7 +25,7 @@ last_name varchar,
 phone_number varchar,
 personal_number varchar,
 image varchar,
-admin boolean not null
+role varchar not null
 );
 
 create table contracts(
