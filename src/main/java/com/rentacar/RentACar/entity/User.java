@@ -17,6 +17,7 @@ import java.util.UUID;
 @Table(name = "users")
 public class User {
 
+
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
@@ -28,7 +29,7 @@ public class User {
     private String phoneNumber;
     private String personalNumber;
     private String image;
-    private boolean admin;
-    @OneToMany
+    private String role;
+    @OneToMany(mappedBy = "user")
     private List<Contract> contracts;
 }
