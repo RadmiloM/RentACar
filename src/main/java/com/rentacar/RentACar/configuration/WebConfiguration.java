@@ -53,7 +53,6 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/{id}").hasAuthority("USER")
                 .antMatchers("/cars").hasAuthority("ADMIN")
                 .antMatchers("/cars/{carId}").hasAuthority("ADMIN")
-                .antMatchers("/cars/{carId}").hasAnyAuthority("USER", "ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
