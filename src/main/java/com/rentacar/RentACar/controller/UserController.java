@@ -7,8 +7,6 @@ import com.rentacar.RentACar.dto.UserUpdateResponse;
 import com.rentacar.RentACar.mapper.UserMapper;
 import com.rentacar.RentACar.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
+
 
     @PostMapping("/users/register")
     public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody UserRequest userRequest) {
@@ -38,41 +37,39 @@ public class UserController {
     public ResponseEntity<UserResponse> loginUser(@Valid @RequestBody UserRequest userRequest, @PathVariable("id") UUID uuid) {
         var userDB = userService.getUserById(uuid);
         var userResponse = new UserResponse();
-        if (userDB.getUsername().equals(userRequest.getUsername()) &&
-                userDB.getPassword().equals(userRequest.getPassword())
-                && userDB.getEmail().equals(userRequest.getEmail())) {
+        if (userDB.getUsername().equals(userRequest.getUsername())
+                && userDB.getEmail().equals(userRequest.getEmail()) && userDB.getRole().equals(userRequest.getRole())) {
             String message = String.valueOf(uuid);
             userResponse.setMessage(message);
             userResponse.setSuccessful(true);
         } else {
             userResponse.setSuccessful(false);
-            userResponse.setMessage("Pogresan username/email ili password");
+            userResponse.setMessage("Pogresan username/email ili role");
         }
         return ResponseEntity.ok(userResponse);
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<Void> updateUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest, @PathVariable("id") UUID uuid){
+    public ResponseEntity<Void> updateUser(@Valid @RequestBody UserUpdateRequest userUpdateRequest, @PathVariable("id") UUID uuid) {
         var user = userMapper.mapToEntity(userUpdateRequest);
-         userService.updateUser(user,uuid);
-         return ResponseEntity.ok().build();
+        userService.updateUser(user, uuid);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserUpdateResponse> getUserById(@PathVariable("id") UUID uuid){
+    public ResponseEntity<UserUpdateResponse> getUserById(@PathVariable("id") UUID uuid) {
         var user = userService.getUserById(uuid);
         var userUpdate = userMapper.mapToDTO(user);
         return ResponseEntity.ok(userUpdate);
     }
+
     @GetMapping("/users")
-    public ResponseEntity<List<UserUpdateResponse>> findAllUsers(){
+    public ResponseEntity<List<UserUpdateResponse>> findAllUsers(@RequestHeader("id") UUID uuid) {
         var users = userService.findAllUsers();
         var updatedUsers = userMapper.mapToDTO(users);
         return ResponseEntity.ok(updatedUsers);
 
     }
-
-
 
 
 }
