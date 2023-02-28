@@ -20,6 +20,7 @@ public class Car {
     private UUID id;
     private String licencePlate;
     private String make;
+    private String model;
     private int year;
     private int engineCapacity;
     private String color;
