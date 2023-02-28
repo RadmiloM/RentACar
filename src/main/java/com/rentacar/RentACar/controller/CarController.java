@@ -47,5 +47,10 @@ public class CarController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/cars/{carId}")
+    public void deleteCarById(@RequestHeader("carId") UUID uuid){
+        carService.deleteCar(uuid);
+    }
+
 
 }

@@ -34,8 +34,8 @@ public class CarService {
 
     public void updateCar(Car car, UUID uuid) {
         var carDB = carRepository.findById(uuid);
-        if(carDB.isEmpty()){
-            throw  new CarNotFoundException("car with id " + uuid + " does not exists in database");
+        if (carDB.isEmpty()) {
+            throw new CarNotFoundException("car with id " + uuid + " does not exists in database");
         }
         var optionalUser = carDB.get();
         if (Objects.nonNull(car.getLicencePlate()) && !"".equals(car.getLicencePlate())) {
@@ -79,6 +79,14 @@ public class CarService {
         }
         carRepository.save(optionalUser);
 
-
     }
+
+    public void deleteCar(UUID uuid){
+        var car  = carRepository.findById(uuid);
+            if(car.isEmpty()){
+                throw new CarNotFoundException("car with id "  + uuid + " does not exists in database");
+            }
+        carRepository.deleteById(uuid);
+        }
+
 }
