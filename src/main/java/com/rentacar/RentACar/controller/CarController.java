@@ -32,4 +32,13 @@ public class CarController {
         var carsResponse = carMapper.mapToDTO(cars);
         return ResponseEntity.ok(carsResponse);
     }
+
+    @GetMapping("/cars/{carId}")
+    public ResponseEntity<CarResponse> getCarById(@PathVariable("carId") UUID uuid){
+        var car = carService.getCarById(uuid);
+        var carResponse = carMapper.mapToDTO(car);
+        return ResponseEntity.ok(carResponse);
+    }
+
+
 }
