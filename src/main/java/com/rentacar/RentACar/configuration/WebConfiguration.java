@@ -4,6 +4,7 @@ import com.rentacar.RentACar.user.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -51,7 +52,9 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/login/{id}").permitAll()
                 .antMatchers("/*").permitAll()
                 .antMatchers("/users/{id}").hasAuthority("USER")
-                .antMatchers("/cars").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/cars").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,"/cars").hasAnyAuthority("ADMIN","USER")
+                .antMatchers("/cars/search").hasAnyAuthority("ADMIN","USER")
                 .antMatchers("/cars/{carId}").hasAuthority("ADMIN")
                 .antMatchers("/admin/update/{id}").hasAuthority("ADMIN")
                 .anyRequest()
