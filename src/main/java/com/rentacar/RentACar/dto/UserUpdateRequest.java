@@ -3,7 +3,6 @@ package com.rentacar.RentACar.dto;
 import com.rentacar.RentACar.validation.ValidPassword;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -15,7 +14,11 @@ public class UserUpdateRequest {
     @NotEmpty(message = "password may not be empty or null")
     @ValidPassword
     private String password;
+    @NotEmpty(message = "first name should not be empty or null")
+    @Size(min = 4,message = "first name size must be at least 4 letters")
     private String firstName;
+    @NotEmpty(message = "first name should not be empty or null")
+    @Size(min = 4,message = "first name size must be at least 4 letters")
     private String lastName;
     private String phoneNumber;
     private String image;
