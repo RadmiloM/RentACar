@@ -21,14 +21,14 @@ public class Car {
     private String licencePlate;
     private String make;
     private String model;
-    private int year;
-    private int engineCapacity;
+    private Integer year;
+    private Integer engineCapacity;
     private String color;
-    private double price;
-    private int doors;
-    private char size;
-    private int power;
-    private boolean automatic;
+    private Double price;
+    private Integer doors;
+    private Character size;
+    private Integer power;
+    private Boolean automatic;
     private String fuel;
     private String image;
     @OneToMany(mappedBy = "car")
