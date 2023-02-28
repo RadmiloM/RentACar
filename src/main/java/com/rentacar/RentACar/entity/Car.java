@@ -28,7 +28,7 @@ public class Car {
     private Integer doors;
     private Character size;
     private Integer power;
-    private Boolean automatic;
+    private boolean automatic;
     private String fuel;
     private String image;
     @OneToMany(mappedBy = "car")

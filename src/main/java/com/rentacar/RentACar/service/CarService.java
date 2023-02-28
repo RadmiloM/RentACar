@@ -68,9 +68,8 @@ public class CarService {
         if (Objects.nonNull(car.getPower())) {
             optionalUser.setPower(car.getPower());
         }
-        if (Objects.nonNull(car.getAutomatic())) {
-            optionalUser.setAutomatic(car.getAutomatic());
-        }
+        optionalUser.setAutomatic(car.isAutomatic());
+
         if (Objects.nonNull(car.getFuel()) && !"".equals(car.getFuel())) {
             optionalUser.setFuel(car.getFuel());
         }

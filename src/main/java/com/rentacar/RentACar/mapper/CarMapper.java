@@ -23,7 +23,7 @@ public class CarMapper {
         car.setDoors(carRequest.getDoors());
         car.setSize(carRequest.getSize());
         car.setPower(carRequest.getPower());
-        car.setAutomatic(car.getAutomatic());
+        car.setAutomatic(car.isAutomatic());
         car.setFuel(carRequest.getFuel());
         car.setImage(carRequest.getImage());
         return car;
@@ -41,7 +41,7 @@ public class CarMapper {
         carResponse.setDoors(car.getDoors());
         carResponse.setSize(car.getSize());
         carResponse.setPower(car.getPower());
-        carResponse.setAutomatic(car.getAutomatic());
+        carResponse.setAutomatic(car.isAutomatic());
         carResponse.setFuel(car.getFuel());
         carResponse.setImage(car.getImage());
         return carResponse;
