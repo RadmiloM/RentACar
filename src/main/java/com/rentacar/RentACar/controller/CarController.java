@@ -40,5 +40,12 @@ public class CarController {
         return ResponseEntity.ok(carResponse);
     }
 
+    @PutMapping("/cars/{carId}")
+    public ResponseEntity<Void> updateCar(@RequestBody CarRequest carRequest,@RequestHeader("carId") UUID uuid){
+        var car  = carMapper.mapToEntity(carRequest);
+        carService.updateCar(car,uuid);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
