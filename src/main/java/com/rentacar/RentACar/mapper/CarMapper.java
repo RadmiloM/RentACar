@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Component
 public class CarMapper {
 
-    public Car mapToEntity(CarRequest carRequest){
+    public Car mapToEntity(CarRequest carRequest) {
         Car car = new Car();
         car.setLicencePlate(carRequest.getLicencePlate());
         car.setMake(carRequest.getMake());
@@ -23,13 +23,13 @@ public class CarMapper {
         car.setDoors(carRequest.getDoors());
         car.setSize(carRequest.getSize());
         car.setPower(carRequest.getPower());
-        car.setAutomatic(car.isAutomatic());
+        car.setAutomatic(car.getAutomatic());
         car.setFuel(carRequest.getFuel());
         car.setImage(carRequest.getImage());
         return car;
     }
 
-    public CarResponse mapToDTO(Car car){
+    public CarResponse mapToDTO(Car car) {
         CarResponse carResponse = new CarResponse();
         carResponse.setLicencePlate(car.getLicencePlate());
         carResponse.setMake(car.getMake());
@@ -41,13 +41,13 @@ public class CarMapper {
         carResponse.setDoors(car.getDoors());
         carResponse.setSize(car.getSize());
         carResponse.setPower(car.getPower());
-        carResponse.setAutomatic(car.isAutomatic());
+        carResponse.setAutomatic(car.getAutomatic());
         carResponse.setFuel(car.getFuel());
         carResponse.setImage(car.getImage());
         return carResponse;
     }
 
-    public List<CarResponse> mapToDTO(List<Car> cars){
+    public List<CarResponse> mapToDTO(List<Car> cars) {
         return cars.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 }
