@@ -30,7 +30,7 @@ public class Car {
     private boolean automatic;
     private String fuel;
     private String image;
-    @OneToMany
+    @OneToMany(mappedBy = "car")
     private List<Contract>contracts;
 
 }

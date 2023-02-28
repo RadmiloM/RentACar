@@ -24,7 +24,9 @@ public class Contract {
     private boolean signed;
     private boolean approved;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "car_id")
     private Car car;
 }
