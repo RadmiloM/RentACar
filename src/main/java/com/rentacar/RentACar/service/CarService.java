@@ -87,5 +87,8 @@ public class CarService {
             }
         carRepository.deleteById(uuid);
         }
+    public List<Car> findByYearAndPower(Integer year, Integer power){
+        return carRepository.findByYearAndPower(year,power);
+    }
 
 }

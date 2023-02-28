@@ -51,6 +51,12 @@ public class CarController {
     public void deleteCarById(@RequestHeader("carId") UUID uuid){
         carService.deleteCar(uuid);
     }
+    @GetMapping("/cars/search")
+    public ResponseEntity<List<CarResponse>> findByYearAndPower(@RequestParam Integer year, @RequestParam Integer power){
+        var cars = carService.findByYearAndPower(year,power);
+        var carResponse = carMapper.mapToDTO(cars);
+        return ResponseEntity.ok(carResponse);
+    }
 
 
 }
