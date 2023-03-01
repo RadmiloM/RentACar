@@ -60,6 +60,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contracts").hasAuthority("ADMIN")
                 .antMatchers("/contracts/pending").hasAuthority("ADMIN")
                 .antMatchers("/contracts/{contractId}/approval").hasAuthority("ADMIN")
+                .antMatchers("/contracts/{userId}/history").hasAnyAuthority("ADMIN","USER")
                 .antMatchers("/contracts/sample").permitAll()
                 .anyRequest()
                 .authenticated()
