@@ -43,6 +43,10 @@ public class ContractService {
         contractRepository.save(contract);
     }
 
+    public List<Contract> getAllContractsByUserId(User user){
+        return contractRepository.findAllByUser(user);
+    }
+
 
 
 
