@@ -30,8 +30,8 @@ role varchar not null
 
 create table contracts(
 id uuid primary key,
-start_date timestamp not null,
-end_date timestamp not null,
+start_date date not null,
+end_date date not null,
 total_price float,
 signed boolean not null,
 approved boolean not null,
