@@ -7,6 +7,8 @@ import com.rentacar.RentACar.repository.ContractRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ContractService {
@@ -17,6 +19,10 @@ public class ContractService {
         contract.setUser(user);
         contract.setCar(car);
         contractRepository.save(contract);
+    }
+
+    public List<Contract> fetchAllContracts(){
+        return contractRepository.findAll();
     }
 
 
