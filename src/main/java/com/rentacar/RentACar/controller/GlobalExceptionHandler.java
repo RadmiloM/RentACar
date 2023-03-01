@@ -1,6 +1,7 @@
 package com.rentacar.RentACar.controller;
 
 import com.rentacar.RentACar.exception.CarNotFoundException;
+import com.rentacar.RentACar.exception.ContractNotFoundException;
 import com.rentacar.RentACar.exception.UsernameAlreadyExistsException;
 import com.rentacar.RentACar.exception.UsernameNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -46,6 +47,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CarNotFoundException.class)
     public ResponseEntity<String> handleCarNotFoundException(CarNotFoundException carNotFoundException){
         return new ResponseEntity<>(carNotFoundException.getMessage(),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ContractNotFoundException.class)
+    public ResponseEntity<String> handleContractNotFoundException(ContractNotFoundException contractNotFoundException){
+        return new ResponseEntity<>(contractNotFoundException.getMessage(),HttpStatus.NOT_FOUND);
     }
 
 }
