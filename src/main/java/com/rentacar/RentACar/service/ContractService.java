@@ -25,5 +25,9 @@ public class ContractService {
         return contractRepository.findAll();
     }
 
+    public List<Contract> findPendingContracts(){
+        return contractRepository.findByApprovedFalse();
+    }
+
 
 }
