@@ -1,7 +1,6 @@
 package com.rentacar.RentACar.mapper;
 
 import com.rentacar.RentACar.dto.ContractRequest;
-import com.rentacar.RentACar.dto.ContractResponse;
 import com.rentacar.RentACar.dto.FullContractResponse;
 import com.rentacar.RentACar.entity.Contract;
 import org.springframework.stereotype.Component;
@@ -22,7 +21,7 @@ public class ContractMapper {
         return contract;
     }
 
-    public FullContractResponse mapToDTO(Contract contract){
+    public FullContractResponse mapToDTO(Contract contract) {
         FullContractResponse fullContractResponse = new FullContractResponse();
         fullContractResponse.setId(contract.getId());
         fullContractResponse.setUserId(contract.getUser().getId());
@@ -35,7 +34,7 @@ public class ContractMapper {
         return fullContractResponse;
     }
 
-    public List<FullContractResponse> mapToDTO(List<Contract> contracts){
+    public List<FullContractResponse> mapToDTO(List<Contract> contracts) {
         return contracts.stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 }
