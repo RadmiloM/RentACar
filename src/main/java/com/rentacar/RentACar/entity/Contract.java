@@ -1,15 +1,14 @@
 package com.rentacar.RentACar.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "contracts")
@@ -18,8 +17,8 @@ public class Contract {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double totalPrice;
     private boolean signed;
     private boolean approved;
